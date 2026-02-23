@@ -6,25 +6,21 @@ import java.util.Deque;
 import java.util.ArrayDeque;
 
 public class PalindromeCheckerApp {
-    public static boolean isPalindrome(String input, int start, int end) {
-        if (start >= end) return true;
-        if (input.charAt(start) != input.charAt(end)) return false;
-        return isPalindrome(input, start + 1, end - 1);
-    }
-
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
-
         //UC9
         System.out.print("Input : ");
         String input = scanner.nextLine();
-
-        boolean result = isPalindrome(input, 0, input.length() - 1);
-
-        System.out.println("Is Palindrome? : " + result);
-
+        String normalized = input.toLowerCase().replaceAll("[^a-z0-9]", "");
+        boolean isPalindrome = true;
+        for (int i = 0; i < normalized.length() / 2; i++) {
+            if (normalized.charAt(i) != normalized.charAt(normalized.length() - 1 - i)) {
+                isPalindrome = false;
+                break;
+            }
+        }
+        System.out.println("Is Palindrome? : " + isPalindrome);
         scanner.close();
-
 
     }
 }
