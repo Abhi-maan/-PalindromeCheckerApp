@@ -7,7 +7,7 @@ public class PalindromeCheckerApp {
         System.out.println("Version : 1.0");
         System.out.println("System initialized successfully.");
 
-        /*UC2
+        /*UC2: Print a Hardcoded Palindrome Result
 
         System.out.print("Input text: ");
         String input = scanner.nextLine();
@@ -22,7 +22,7 @@ public class PalindromeCheckerApp {
         }
         System.out.println("Is it a Palindrome? : " + isPalindrome);*/
 
-        //UC3
+        /*UC3: Palindrome Check Using String Reverse
 
         System.out.print("Input text: ");
         String input = scanner.nextLine();
@@ -31,8 +31,26 @@ public class PalindromeCheckerApp {
             reverse = reverse + input.charAt(i);
         }
         boolean isPalindrome = input.equals(reverse);
-        System.out.println("Is it a Palindrome? : " + isPalindrome);
+        System.out.println("Is it a Palindrome? : " + isPalindrome); */
 
+
+        //UC4: Character Array Based Palindrome Check
+
+        System.out.print("Input text: ");
+        String input = scanner.nextLine();
+        char[] chars = input.toCharArray();
+        int start = 0;
+        int end = chars.length - 1;
+        boolean isPalindrome = true;
+        while (start < end) {
+            if (chars[start] != chars[end]) {
+                isPalindrome = false;
+                break;
+            }
+            start++;
+            end--;
+        }
+        System.out.println("Is Palindrome? : " + isPalindrome);
 
     }
 }
