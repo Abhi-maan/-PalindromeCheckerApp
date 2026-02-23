@@ -1,13 +1,14 @@
 import java.util.Scanner;
 public class PalindromeCheckerApp {
     public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
         //UC1
         System.out.println("Welcome to the palindrome checker management system");
         System.out.println("Version : 1.0");
         System.out.println("System initialized successfully.");
 
-        //UC2
-        Scanner scanner = new Scanner(System.in);
+        /*UC2
+
         System.out.print("Input text: ");
         String input = scanner.nextLine();
         boolean isPalindrome = true;
@@ -19,7 +20,19 @@ public class PalindromeCheckerApp {
                 break;
             }
         }
+        System.out.println("Is it a Palindrome? : " + isPalindrome);*/
+
+        //UC3
+
+        System.out.print("Input text: ");
+        String input = scanner.nextLine();
+        String reverse = "";
+        for (int i = input.length() - 1; i >= 0; i--) {
+            reverse = reverse + input.charAt(i);
+        }
+        boolean isPalindrome = input.equals(reverse);
         System.out.println("Is it a Palindrome? : " + isPalindrome);
-        scanner.close();
+
+
     }
 }
