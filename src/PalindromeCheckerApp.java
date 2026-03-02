@@ -1,31 +1,5 @@
 import java.util.Scanner;
 import java.util.Stack;
-<<<<<<< HEAD
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Deque;
-import java.util.ArrayDeque;
-
-public class PalindromeCheckerApp {
-    public static void main(String[] args){
-        Scanner scanner = new Scanner(System.in);
-        //UC9
-        System.out.print("Input : ");
-        String input = scanner.nextLine();
-        String normalized = input.toLowerCase().replaceAll("[^a-z0-9]", "");
-        boolean isPalindrome = true;
-        for (int i = 0; i < normalized.length() / 2; i++) {
-            if (normalized.charAt(i) != normalized.charAt(normalized.length() - 1 - i)) {
-                isPalindrome = false;
-                break;
-            }
-        }
-        System.out.println("Is Palindrome? : " + isPalindrome);
-        scanner.close();
-
-    }
-}
-=======
 
 interface PalindromeStrategy {
     boolean check(String input);
@@ -34,15 +8,16 @@ interface PalindromeStrategy {
 class StackStrategy implements PalindromeStrategy {
     public boolean check(String input) {
         Stack<Character> stack = new Stack<>();
-        for (char c : input.toCharArray()) {
-            stack.push(c);
-        }
-        for (char c : input.toCharArray()) {
-            if (c != stack.pop()) {
-                return false;
-            }
-        }
+        for (char c : input.toCharArray()) stack.push(c);
+        for (char c : input.toCharArray()) if (c != stack.pop()) return false;
         return true;
+    }
+}
+
+class ReverseStrategy implements PalindromeStrategy {
+    public boolean check(String input) {
+        String reversed = new StringBuilder(input).reverse().toString();
+        return input.equals(reversed);
     }
 }
 
@@ -51,10 +26,20 @@ public class PalindromeCheckerApp {
         Scanner sc = new Scanner(System.in);
         System.out.print("Input : ");
         String input = sc.nextLine();
-        PalindromeStrategy strategy = new StackStrategy();
-        boolean result = strategy.check(input);
-        System.out.println("Is Palindrome? : " + result);
+
+        PalindromeStrategy stackStrategy = new StackStrategy();
+        long start1 = System.nanoTime();
+        boolean result1 = stackStrategy.check(input);
+        long end1 = System.nanoTime();
+
+        PalindromeStrategy reverseStrategy = new ReverseStrategy();
+        long start2 = System.nanoTime();
+        boolean result2 = reverseStrategy.check(input);
+        long end2 = System.nanoTime();
+
+        System.out.println("Stack Strategy -> " + result1 + " | Time: " + (end1 - start1) + " ns");
+        System.out.println("Reverse Strategy -> " + result2 + " | Time: " + (end2 - start2) + " ns");
+
         sc.close();
     }
 }
->>>>>>> feature/UC12
